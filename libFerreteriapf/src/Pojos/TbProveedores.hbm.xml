@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbProveedores" table="tb_proveedores" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idProveedor" type="java.lang.Integer">
+            <column name="ID_PROVEEDOR" />
+            <generator class="identity" />
+        </id>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="nombreProveedor" type="string">
+            <column name="NOMBRE_PROVEEDOR" length="100" />
+        </property>
+        <set name="tbProductoProveedors" table="tb_producto_proveedor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PROVEEDORES" />
+            </key>
+            <one-to-many class="Pojos.TbProductoProveedor" />
+        </set>
+    </class>
+</hibernate-mapping>

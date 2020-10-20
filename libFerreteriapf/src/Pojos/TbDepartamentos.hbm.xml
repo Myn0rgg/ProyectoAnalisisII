@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbDepartamentos" table="tb_departamentos" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idDpto" type="java.lang.Integer">
+            <column name="ID_DPTO" />
+            <generator class="identity" />
+        </id>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="nomDpto" type="string">
+            <column name="NOM_DPTO" length="50" />
+        </property>
+        <set name="tbDireccioneses" table="tb_direcciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_DPTO" />
+            </key>
+            <one-to-many class="Pojos.TbDirecciones" />
+        </set>
+        <set name="tbMunicipios" table="tb_municipio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_DPTO" />
+            </key>
+            <one-to-many class="Pojos.TbMunicipio" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbFuncionesEmpleados" table="tb_funciones_empleados" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idFuncionEmpleado" type="java.lang.Integer">
+            <column name="ID_FUNCION_EMPLEADO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbEmpleados" class="Pojos.TbEmpleados" fetch="select">
+            <column name="ID_EMPLEADO" />
+        </many-to-one>
+        <many-to-one name="tbFunciones" class="Pojos.TbFunciones" fetch="select">
+            <column name="ID_FUNCION" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+    </class>
+</hibernate-mapping>

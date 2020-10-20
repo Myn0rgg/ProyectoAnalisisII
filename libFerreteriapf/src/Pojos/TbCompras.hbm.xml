@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbCompras" table="tb_compras" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idCompra" type="java.lang.Integer">
+            <column name="ID_COMPRA" />
+            <generator class="identity" />
+        </id>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="FECHA" length="10" />
+        </property>
+        <set name="tbDetallesComprases" table="tb_detalles_compras" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_COMPRA" />
+            </key>
+            <one-to-many class="Pojos.TbDetallesCompras" />
+        </set>
+    </class>
+</hibernate-mapping>

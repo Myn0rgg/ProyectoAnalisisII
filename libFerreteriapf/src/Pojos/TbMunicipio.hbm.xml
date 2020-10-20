@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbMunicipio" table="tb_municipio" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idMunicipio" type="java.lang.Integer">
+            <column name="ID_MUNICIPIO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbDepartamentos" class="Pojos.TbDepartamentos" fetch="select">
+            <column name="ID_DPTO" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="nomMunicipio" type="string">
+            <column name="NOM_MUNICIPIO" length="150" />
+        </property>
+        <property name="codigoPostal" type="java.lang.Integer">
+            <column name="CODIGO_POSTAL" />
+        </property>
+        <set name="tbDireccioneses" table="tb_direcciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_MUNICIPIO" />
+            </key>
+            <one-to-many class="Pojos.TbDirecciones" />
+        </set>
+    </class>
+</hibernate-mapping>

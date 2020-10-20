@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbTiposPagos" table="tb_tipos_pagos" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idTipoPago" type="java.lang.Integer">
+            <column name="ID_TIPO_PAGO" />
+            <generator class="identity" />
+        </id>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="nombreTipoPago" type="string">
+            <column name="NOMBRE_TIPO_PAGO" length="30" />
+        </property>
+        <property name="recargo" type="java.lang.Float">
+            <column name="RECARGO" precision="12" scale="0" />
+        </property>
+        <set name="tbPagoses" table="tb_pagos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_TIPO_PAGO" />
+            </key>
+            <one-to-many class="Pojos.TbPagos" />
+        </set>
+    </class>
+</hibernate-mapping>

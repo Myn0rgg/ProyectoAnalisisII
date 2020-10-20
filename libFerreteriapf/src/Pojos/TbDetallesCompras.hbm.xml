@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbDetallesCompras" table="tb_detalles_compras" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idDetalleCompra" type="java.lang.Integer">
+            <column name="ID_DETALLE_COMPRA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbCompras" class="Pojos.TbCompras" fetch="select">
+            <column name="ID_COMPRA" />
+        </many-to-one>
+        <many-to-one name="tbProductos" class="Pojos.TbProductos" fetch="select">
+            <column name="ID_PRODUCTO" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="subtotal" type="java.lang.Float">
+            <column name="SUBTOTAL" precision="12" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Float">
+            <column name="TOTAL" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

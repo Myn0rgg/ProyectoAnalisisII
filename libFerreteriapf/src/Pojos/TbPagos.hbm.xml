@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbPagos" table="tb_pagos" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idPago" type="java.lang.Integer">
+            <column name="ID_PAGO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbFacturas" class="Pojos.TbFacturas" fetch="select">
+            <column name="ID_FACTURA" />
+        </many-to-one>
+        <many-to-one name="tbTiposPagos" class="Pojos.TbTiposPagos" fetch="select">
+            <column name="ID_TIPO_PAGO" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+    </class>
+</hibernate-mapping>

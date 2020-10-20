@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbProductos" table="tb_productos" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="ID_PRODUCTO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbMarcas" class="Pojos.TbMarcas" fetch="select">
+            <column name="ID_MARCA" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="nombreProducto" type="string">
+            <column name="NOMBRE_PRODUCTO" length="80" />
+        </property>
+        <property name="fechaCaducidad" type="date">
+            <column name="FECHA_CADUCIDAD" length="10" />
+        </property>
+        <property name="stock" type="java.lang.Integer">
+            <column name="STOCK" />
+        </property>
+        <set name="tbDetallesFacturases" table="tb_detalles_facturas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PRODUCTO" />
+            </key>
+            <one-to-many class="Pojos.TbDetallesFacturas" />
+        </set>
+        <set name="tbCategoriasProductos" table="tb_categorias_producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PRODUCTO" />
+            </key>
+            <one-to-many class="Pojos.TbCategoriasProducto" />
+        </set>
+        <set name="tbProductoProveedors" table="tb_producto_proveedor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PRODUCTO" />
+            </key>
+            <one-to-many class="Pojos.TbProductoProveedor" />
+        </set>
+        <set name="tbDetallesComprases" table="tb_detalles_compras" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PRODUCTO" />
+            </key>
+            <one-to-many class="Pojos.TbDetallesCompras" />
+        </set>
+    </class>
+</hibernate-mapping>

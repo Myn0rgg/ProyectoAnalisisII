@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbCorteDeCaja" table="tb_corte_de_caja" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idCorteCaja" type="java.lang.Integer">
+            <column name="ID_CORTE_CAJA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbCajas" class="Pojos.TbCajas" fetch="select">
+            <column name="ID_CAJA" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="cantidadCierre" type="java.lang.Float">
+            <column name="CANTIDAD_CIERRE" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

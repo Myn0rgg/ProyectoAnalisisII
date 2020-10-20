@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbFacturas" table="tb_facturas" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idFactura" type="java.lang.Integer">
+            <column name="ID_FACTURA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbCajas" class="Pojos.TbCajas" fetch="select">
+            <column name="ID_CAJA" />
+        </many-to-one>
+        <many-to-one name="tbClientes" class="Pojos.TbClientes" fetch="select">
+            <column name="ID_CLIENTE" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="FECHA" length="10" />
+        </property>
+        <set name="tbDetallesFacturases" table="tb_detalles_facturas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_FACTURA" />
+            </key>
+            <one-to-many class="Pojos.TbDetallesFacturas" />
+        </set>
+        <set name="tbClienteses" table="tb_clientes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_DIRECCIONES_FACTURACION" />
+            </key>
+            <one-to-many class="Pojos.TbClientes" />
+        </set>
+        <set name="tbPagoses" table="tb_pagos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_FACTURA" />
+            </key>
+            <one-to-many class="Pojos.TbPagos" />
+        </set>
+    </class>
+</hibernate-mapping>

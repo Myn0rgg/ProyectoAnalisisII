@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbClientes" table="tb_clientes" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="ID_CLIENTE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbDirecciones" class="Pojos.TbDirecciones" fetch="select">
+            <column name="ID_DIRECCION_ENVIO" />
+        </many-to-one>
+        <many-to-one name="tbFacturas" class="Pojos.TbFacturas" fetch="select">
+            <column name="ID_DIRECCIONES_FACTURACION" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="dpi" type="string">
+            <column name="DPI" length="35" />
+        </property>
+        <property name="nombre1" type="string">
+            <column name="NOMBRE1" length="30" />
+        </property>
+        <property name="nombre2" type="string">
+            <column name="NOMBRE2" length="30" />
+        </property>
+        <property name="apellidoP" type="string">
+            <column name="APELLIDO_P" length="30" />
+        </property>
+        <property name="apellidoM" type="string">
+            <column name="APELLIDO_M" length="30" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="20" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="60" />
+        </property>
+        <property name="fechaVencimiento" type="date">
+            <column name="FECHA_VENCIMIENTO" length="10" />
+        </property>
+        <set name="tbFacturases" table="tb_facturas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_CLIENTE" />
+            </key>
+            <one-to-many class="Pojos.TbFacturas" />
+        </set>
+    </class>
+</hibernate-mapping>

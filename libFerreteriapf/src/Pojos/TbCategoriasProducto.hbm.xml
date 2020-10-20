@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-oct-2020 16:13:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos.TbCategoriasProducto" table="tb_categorias_producto" catalog="ferreteriapf" optimistic-lock="version">
+        <id name="idCategoriaProducto" type="java.lang.Integer">
+            <column name="ID_CATEGORIA_PRODUCTO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbCategoria" class="Pojos.TbCategoria" fetch="select">
+            <column name="ID_CATEGORIA" />
+        </many-to-one>
+        <many-to-one name="tbProductos" class="Pojos.TbProductos" fetch="select">
+            <column name="ID_PRODUCTO" />
+        </many-to-one>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+    </class>
+</hibernate-mapping>
