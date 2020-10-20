@@ -45,7 +45,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ferreteriapf?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">msolism50715</property>
+    <property name="hibernate.connection.password">12345</property>
     <mapping resource="Pojos/TbCategoria.hbm.xml"/>
     <mapping resource="Pojos/TbDepartamentos.hbm.xml"/>
     <mapping resource="Pojos/TbClientes.hbm.xml"/>
