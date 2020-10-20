@@ -12,6 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -63,7 +64,57 @@ public class CrudFunciones {
 
         }
         return lista;
-    }       
+    }   
+    
+     public static boolean update(Integer idFuncion, String nomFuncion){
+      boolean bandera=false;
+      Session session=HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+      Criteria criteria=session.createCriteria(TbFunciones.class);
+      criteria.add(Restrictions.eq("idFuncion", idFuncion));
+      TbFunciones update=(TbFunciones)criteria.uniqueResult();
+      Transaction transaccion=null;
+      try{
+      transaccion=session.beginTransaction();
+      if(update!=null){
+          update.setNomFuncion(nomFuncion);
+          session.update(update);
+          bandera=true;
+      }
+      transaccion.commit();
+      }catch(HibernateException e){
+           System.err.println("error"+e); 
+      }finally{
+          session.close();
+      }
+              
+           return bandera;
         
+    }
+     
+      public static boolean anular(Integer idFuncion){
+      boolean bandera=false;
+      Session session=HibernateUtil.HibernateUtil.getSessionFactory().openSession();
+      Criteria criteria=session.createCriteria(TbFunciones.class);
+      criteria.add(Restrictions.eq("idFuncion", idFuncion));
+      TbFunciones anular=(TbFunciones)criteria.uniqueResult();
+      Transaction transaccion=null;
+      try{
+      transaccion=session.beginTransaction();
+      if(anular!=null){
+          anular.setEstado(false);
+          session.save(anular);
+          bandera=true;
+      }
+      transaccion.commit();
+      }catch(HibernateException e){
+           System.err.println("error"+e); 
+      }finally{
+          session.close();
+      }
+         
+           return bandera;
+        
+    }
+       
     
 }
