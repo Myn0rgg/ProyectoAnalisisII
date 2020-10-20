@@ -6,10 +6,12 @@
 package Crud;
 
 import Pojos.TbFunciones;
+import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -44,5 +46,24 @@ public class CrudFunciones {
         }
         return bandera;       
     }
+    public static List<TbFunciones>universo(){
+        
+        Session session=HibernateUtil.HibernateUtil.getSessionFactory().getCurrentSession();
+        List<TbFunciones>lista=null;
+        try{
+        session.beginTransaction();
+        Criteria criteria=session.createCriteria(TbFunciones.class);
+        criteria.add(Restrictions.eq("estado", true));
+        criteria.addOrder(Order.asc("nomFuncion"));       
+        lista=criteria.list();
+        }catch(HibernateException e){
+           System.err.println("error"+e); 
+        }finally{
+            session.getTransaction().commit();
+
+        }
+        return lista;
+    }       
+        
     
 }
